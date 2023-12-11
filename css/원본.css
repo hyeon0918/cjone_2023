@@ -1,0 +1,576 @@
+/* 모바일 화면 - 0 ~ 768px */
+@media screen and (max-width: 768px) {
+
+   body.on { position: fixed; left: 0; top: 0; width: 100%; height: 100%; } /* fixed는 스크린 기준 */
+   div.bg.on { z-index: 90; position: absolute; left: 0; top: 0; right: 0; bottom: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); }
+
+   /* layout */
+#header { z-index: 40; position: relative; width: 100%; height: 56px; }
+   .header_wrap { position: absolute; left: 0; width: 100%; height: 56px; background-color: #222; } /* #header 기준으로 위치 선정 */
+      .header_inner { position: relative; width: 100%; height: 56px; margin: 0 auto; }
+   .srch { position: absolute; left: 0; top: 54px; width: 100%; }
+.banner { overflow: hidden; z-index: 30; position: relative; width: 100%; height: 550px;  } /* z-index는 position이 있을 때만 입력할 수 있음. */
+#container { width: 100%; }
+   .content1 { width: 100%; background: #fff; }
+   .content2 { position: relative; width: 100%; height: 3020px; background: url(../img/bg_hotcontent.png) no-repeat 50% 100%; background-size: cover;  } /* article들이 포스트잇처럼 붙어있어야 해서 높이값이 필요함. */
+      .content2_inner { z-index: 10; position: relative; width: 100%; height: 100%; margin: 0 auto; }
+      .circle_wrap { z-index: 1; position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; } 
+      /* .content2를 기준으로 위치 선정 / circle_wrap을 기준으로 움직이지만, absolute로 각 꼭짓점을 지정해주면 content2와 크기가 똑같음.
+   position: absolute; left: 0; top: 0; right: 0; bottom: 0; → 부모의 꼭짓점을 찍어 부모의 영역만큼 지정 → 부모 크기 상속받아도 크기가 제대로 나오지 않는 경우 사용*/
+   .content3 { width: 100%; background: #fff; padding: 70px 0 80px; }
+      .content3_inner { width: 100%; margin: 0 auto; }
+#footer { position: relative; width: 100%; height: 300px; background: #222; color: #777; text-align: center; letter-spacing: 1px; }
+   .footer_inner { width: 100%; margin: 0 auto; padding-top: 40px; }
+
+   
+/* header 시작 */
+
+/* 로고 */
+h1.logo { position: absolute; left: 50%; top: 12px; transform: translateX(-50%); } /* position: absolute;가 붙으면 margin: 0 auto;가 적용되지 않음. left: 50%;으로 가운데 보내줄 수 있음. */
+
+/* 탑메뉴 (위치 : 오른쪽 위) */
+dl.topMenu { display: none; }
+
+/* 주메뉴 */
+nav.gnb { display: none; }
+
+/* 모바일 */
+/* 모바일 햄버거 버튼 */
+div.mobBtn { z-index: 100; position: absolute; left: 10px; top: 18px; } 
+/* body 기준으로 위치 선정 */
+
+/* 모바일 닫기 버튼 */
+div.mobBtn_close { z-index: 100; position: absolute; left: -30px; top: 19px; transition: left 0.01s linear 0s; }
+div.mobBtn_close > a { display: block; width: 30px; height: 30px;
+   background: url(../img/btn_close.png) no-repeat -27px 0; text-indent: -9999px; overflow: hidden; }
+
+div.mobBtn_close.on { z-index: 100; left: 300px; } /* body가 부모 */
+
+/* 모바일 전체 메뉴 */
+div.mob { z-index: 100; overflow-y: auto; overflow-x: none; position: fixed; left: -350px; top: 0; width: 280px; height: 100%; background: #fff; transition: left 0.2s linear 0s; }
+div.mob.on { left: 0px;}
+
+div.mob > h2 { display: block;  height: 56px; line-height: 30px; padding: 30px 0 0 18px; padding-bottom: 1px; font-size: 24px; color: #fff; background-color: #222; }
+
+/* 모바일 탑메뉴 */
+div.mob > .mob_topMenu {  overflow-x: hidden; width: 100%; color: #555; font-size: 14px; }
+
+div.mob > .mob_topMenu > dd { background-color: #eaeaea; }
+div.mob > .mob_topMenu > dd > a { display: block; padding: 0 30px; font-size: 16px; line-height: 42px; color: #555; }
+
+div.mob > .mob_topMenu > dd:last-child { background: #eaeaea url(../img/bg_dotline02.png) repeat-x; }
+div.mob > .mob_topMenu > dd:last-child > a { display: block; min-height: 41px; line-height: 24px; padding: 18px 20px 0 30px; font-size: 16px; }
+
+div.mob > .mob_topMenu > dd:nth-of-type(5) { z-index: 10; position: relative; background: #eaeaea url(../img/bg_dotline02.png) repeat-x;  }
+div.mob > .mob_topMenu > dd:nth-of-type(5) > a { display: block; min-height: 41px; line-height: 24px; padding: 18px 20px 0 30px; font-size: 16px;
+   background: url(../img/ico_util_arrow.png) no-repeat 90% 25px; }
+
+div.mob > .mob_topMenu > dd:nth-of-type(5) > ul { /* dd:nth-of-type(5)에 클래스 on이 붙으면 display: block; */ display: none;
+   width: 100%; background: #dadada; padding: 5px 0 5px 0; }
+div.mob > .mob_topMenu > dd:nth-of-type(5).on > ul { display: block; }
+
+
+div.mob > .mob_topMenu > dd:nth-of-type(5) > ul > li { padding-left: 0; line-height: 1.5; }
+div.mob > .mob_topMenu > dd:nth-of-type(5) > ul > li > a { display: block; padding: 0 30px; color: #555; font-size: 16px; line-height: 42px; }
+
+
+/* 모바일 주메뉴 */
+nav.mob_gnb {  }
+
+nav.mob_gnb > ul { width: 100%; }
+nav.mob_gnb > ul > li { background: #fff; border-bottom: 2px solid #eaeaea; }
+nav.mob_gnb > ul > li > a { display: block; min-height: 41px; margin-right: 0; padding: 15px 20px 0 20px; line-height: 26px; color: #222; font-size: 18px; }
+nav.mob_gnb > ul > li > a:hover { color: #f4790b; }
+
+nav.mob_gnb > ul > li > ul > li > a { display: block; padding: 0 30px; color: #555; font-size: 16px; line-height: 42px; }
+nav.mob_gnb > ul > li > ul > li > a:hover { color: #f4790b; }
+
+nav.mob_gnb > ul > li.aco > a { display: block; margin-right: 0; padding: 15px 20px 0 20px; line-height: 26px; background: url(../img/ico_gnb_updown02.png) no-repeat 95% 25px; }
+nav.mob_gnb > ul > li.aco > ul { display: none; background: #eaeaea; }
+
+nav.mob_gnb > ul > li.aco.on > ul { display: block; }
+nav.mob_gnb > ul > li.aco.on > a { color: #f4790b; }
+
+
+/* info */ 
+div.info { display: flex; justify-content: flex-end; position: absolute; right: 0; top: 12px; } /* header_inner를 기준으로 위치 선정 */
+
+/* 검색버튼 */
+span.srch_open { position: relative; bottom: -2px; width: 35px; height: 56px; margin-right: 20px; } /* 자기 자리에서 이동하기 - transform: translateY(7px) - position: relative; */
+span.srch_open > a { display: block; margin: 7px auto 0; width: 24px; height: 24px; background: url(../img/btn_gnb_search.png) no-repeat 0 0; text-indent: -9999px; overflow: hidden;  }
+
+/* 클래스 on 붙었을 때 - 배경, 돋보기 색상 변경 */
+span.srch_open.on { background: url(../img/bg_gnb_search.png) no-repeat 0 0; }
+span.srch_open.on > a { background-position-y: -24px; }
+
+/* 로그인 */
+span.login { position: relative; top: -12px; width: 72px; height: 54px; }
+span.login > a { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+span.login > a > img { position: absolute; left: 0; top: 0; opacity: 0; } /* span.login > a를 기준으로 위치 선정 / 1번 이미지부터 보이게 됨. */
+
+@keyframes ani {
+0% { opacity: 1; }
+50% { opacity: 0; }
+}
+
+
+/* 검색박스 */
+form.srch { height: 0; overflow: hidden; background: #f8f8f8; transition: height 400ms linear 0s; } 
+/* overflow 기본값은 visible 보이는거
+height값을 0으로 지정했기 때문에 overflow:hidden으로 내용물을 가려줘서 안보이는 것. display: none과 같은 결과물을 볼 수 있음. */
+form.srch.on { height: 135px; }
+
+form.srch > fieldset { width: 678px; margin: 0 auto; line-height: 135px; } /* 검색박스 content 가로길이 */
+form.srch > fieldset > input[type="search"] {width: 514px; height: 56px; padding: 0 15px; margin-right: 3px; border: 1px solid #222;
+   color: #333; font-size: 18px; line-height: 56px; text-indent: 10px; } /* 총 width: 582px; */
+form.srch > fieldset > input::placeholder { color: #e60; } /* input의 placeholder의 색상 변경 방법 */
+
+form.srch > fieldset > button { width: 120px; height: 56px; font-size: 18px; background-color: #333; color: #fff; border: none;
+vertical-align: middle; transition: background 400ms linear 0s; }
+form.srch > fieldset > button:hover { background: #000; cursor: pointer; } 
+
+/* 배너 section */
+div.banner_frame { display: flex; justify-content: flex-start; position: relative; left: 0; width: 1000%; height: 100%;
+transition: left 0.6s linear 0s; } 
+/* banner frame은 기차역할 - 부모인 banner를 기준으로 10배이므로 1000%가 됨 / 안의 배너들은 10%가 됨
+position: relative; 대신에 translateS를 사용할 수 있음. */
+div.banner_frame > section { flex: 1; height: 100%; }
+
+/* section 3번째 홈파티 올리브영 클래스 white 붙여서 내부 글씨 색상 변경 */
+div.banner_frame > section.white { color: #fff; } /* 주황 #FF9A01 */
+div.banner_frame > section.white > div > ul > li:last-child > a { color: #fff; border-color: #fff; } /* 주황 #FF9A01 */
+
+
+.banner_frame > section:nth-of-type(1) { background: url(../img/banner_oliveday.jpg) no-repeat 50% 0; } /* 올리브데이 */
+.banner_frame > section:nth-of-type(2) { background: url(../img/banner_louiswain.jpg) no-repeat 50% 0; } /* 루이스 웨인전 */
+.banner_frame > section:nth-of-type(3) { background: url(../img/banner_trendybooze.jpg) no-repeat 50% 0; } /* 홈파티 올리브영 */
+.banner_frame > section:nth-of-type(4) { background: url(../img/banner_bugs.jpg) no-repeat 50% 0; } /* 벅스 */
+.banner_frame > section:nth-of-type(5) { background: url(../img/banner_lgproduct.jpg) no-repeat 50% 0; } /* lg가전 */
+.banner_frame > section:nth-of-type(6) { background: url(../img/banner_omni.jpg) no-repeat 50% 0; } /* 옴니 */
+.banner_frame > section:nth-of-type(7) { background: url(../img/banner_pichbeach.jpg) no-repeat 50% 0; } /* 피치비치 */
+.banner_frame > section:nth-of-type(8) { background: url(../img/banner_dali.jpg) no-repeat 50% 0; } /* 빛의 시어터 */
+.banner_frame > section:nth-of-type(9) { background: url(../img/banner_doraemong.jpg) no-repeat 50% 0; } /* 도라에몽 */
+.banner_frame > section:nth-of-type(10) { background: url(../img/banner_picasso.jpg) no-repeat 50% 0; } /* 피카소 */
+.banner_frame > section { background-size: cover; }
+
+.banner_frame > section > div { width: 100%; margin: 0 auto; padding-left: 22px; padding-top: 100px; box-sizing: border-box; }
+/* div 내부 전체 text */
+.banner_frame > section > div > h3 { margin-bottom: 20px; font-size: 30px; letter-spacing: 0; font-family: cj_onlyone_medium; line-height: 1.2; }
+.banner_frame > section > div > ul {  }
+.banner_frame > section > div > ul > li { font-size: 16px; line-height: 26px;  }
+.banner_frame > section > div > ul > li:last-child > a { display: block; width: 160px; height: 40px; border: 1px solid #000; border-radius: 3px;
+box-sizing: border-box; margin-top: 40px; font-size: 14px; color: #000; text-align: center; line-height: 40px; transition: background 400ms linear 0s;  } /* 자세히보기 등 버튼 */
+.banner_frame > section > div > ul > li:last-child > a:hover { border-color: transparent; background: rgba(255,255,255,0.3); } /* 버튼 hover 했을 때 */
+
+
+/* 배너 화살표 */
+.arrow > a { display: none; } /* tablet 화면에는 없음. display: none; */
+
+/* 배너 롤링 */
+.rolling { display: flex; position: absolute; left: 50%; transform: translateX(-50%); bottom: 30px; } /* inner 기준 */
+.rolling > p {  }
+.rolling > ul { display: flex; }
+.rolling > ul > li { flex: 1; line-height: 25px; margin-left: 10px; }
+
+.rolling a { display: inline-block; text-indent: -9999px; overflow: hidden; 
+background: url(../img/btn_banner_black.png) no-repeat 0 0; }
+
+.rolling > ul > li > a { width: 12px; height: 12px; background-position: -137px -9px ; } /* 빈 동그라미 */
+.rolling > ul > li > a.on { background-position: -137px -39px; } /* 채워진 동그라미 */
+
+
+/* 재생/멈춤*/
+.rolling > p > a { width: 20px; height: 20px; background-position: -107px -35px; }
+.rolling > p > a.pause { background-position: -107px -5px; }
+
+.arrow > a.white, .rolling a.white { background-image: url(../img/btn_banner.png);}
+
+
+/* container */
+/* content1 */
+.content1 > ul { display: flex; justify-content: center; flex-wrap: wrap; width: 100%; margin: 40px auto; }
+.content1 > ul > li { position: relative; width: 50%; text-align: center;  }
+.content1 > ul > li:after { content: ""; position: absolute; right: 0; top: 15px; width: 1px; height: 151px; background-color: #ddd; } /* content 사이에 있는 선 after를 사용함. */ 
+.content1 > ul > li:nth-of-type(2)::after, .content1 > ul > li:last-child::after { display: none; }
+
+.content1 > ul > li span { display: block; position: relative; width: 150px; height: 130px; margin: 0 auto; }
+.content1 > ul > li span img { position: absolute; left: 0; top: 0; opacity: 0; }
+.content1 > ul > li:nth-of-type(2) span img { left: 20px; } 
+/* 두번째 사진을 가운데 위치시키기 위해 leff 값을 줌. */
+
+.content1 > ul > li span img:first-of-type { opacity: 1; }
+
+.content1 > ul > li dt { font-size: 18px; color: #000; }
+.content1 > ul > li dd { font-size: 14px; padding-top: 5px; color: #555; }
+
+
+/* content2 */
+.content2_inner > h2 { font-size: 30px; color: #222; text-align: center; font-family: cj_onlyone_medium; padding-top: 70px; }
+/* article 공통 */
+.content2_inner > article { background-color: #fff; text-align: center; letter-spacing: 0; box-shadow: 0 5px 20px rgb(0,0,0,0.1);
+ overflow: hidden; transition: top 0.5s linear 0s, left 0.5s linear 0s; } /* 아래로 5px 그림자 20px */
+
+/* article은 pc화면 사이즈를 줄이면 위치가 달라짐 - position: absolute;를 지정해줘야 함. */
+/* a태그 안에 있는 내용은 보여지는 화면 / div로 묶은 내용은 a태그를 hover 했을 때 밑에서 위로 / 왼 오(2, 7번)로 움직이는 부분임. */
+/* article 1번 */
+.content2_inner > article:nth-of-type(1) { position: absolute; left: 189px; top: 215px; width: 401px; height: 509px; } /* inner 기준으로 위치 선정 */
+
+.content2_inner > article:nth-of-type(1) > a {  }
+.content2_inner > article:nth-of-type(1) > a > span { display: block; width: 400px; height: 400px; overflow: hidden; } /* 이미지부분 */
+.content2_inner > article:nth-of-type(1) > a > span > img { width: 100%; margin-top: -65px; }
+
+.content2_inner > article:nth-of-type(1) > a > div { width: 400px; height: 109px; color: #222; } /* 아래 글씨(하얀)부분 */
+.content2_inner > article:nth-of-type(1) > a > div > h3 { margin-top: 15px; margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(1) > a > div > h3 > img { height: 35px; } 
+.content2_inner > article:nth-of-type(1) > a > div > ul > li:first-child { font-size: 16px; line-height: 24px; }
+
+/* hover 했을 때 */
+.content2_inner > article:nth-of-type(1) > div { position: absolute; top: 100%; 
+display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #fff; transition: top 400ms cubic-bezier(0.770, 0.0000, 0.175, 1.000) 0s; }
+/* 각각의 article 위치를 기준으로 hover 했을 때 위치를 잡아줌. */
+.content2_inner > article:nth-of-type(1):hover > div { top: 0; }
+
+/* div.detail */
+.content2_inner > article:nth-of-type(1) > div > div.detail { /* 부모인 div에 flex로 위치 지정했으므로 따로 지정할 필요 없음. */ } 
+.content2_inner > article:nth-of-type(1) > div > div.detail > h3 { margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(1) > div > div.detail > h3 > img { height: 35px; }
+
+.content2_inner > article:nth-of-type(1) > div > div.detail > ul > li { color: #555; font-size: 14px; line-height: 24px; }
+.content2_inner > article:nth-of-type(1) > div > div.detail > ul > li:first-child { color: #222; font-size: 16px; line-height: 24px; margin-bottom: 10px; }
+
+.content2_inner > article:nth-of-type(1) > div > div.detail > ul > li:last-child { margin-top: 10px; padding: 0 15px; border: 1px solid #222; border-radius: 2px; }
+.content2_inner > article:nth-of-type(1) > div > div.detail > ul > li:last-child > a { display: block; padding-right: 20px; color: #222; 
+background: url(../img/ico_out_link04.png) no-repeat 100% 50%; } /* 레시피보기 이미지 삽입 */
+
+/* article 2번 */
+.content2_inner > article:nth-of-type(2) { position: absolute; left: 140px; top: 782px; width: 500px; height: 220px; } /* inner 기준으로 위치 선정 */
+
+.content2_inner > article:nth-of-type(2) > a { }
+.content2_inner > article:nth-of-type(2) > a > span { display: block; float: right; width: 220px; height: 220px; overflow: hidden; }
+.content2_inner > article:nth-of-type(2) > a > span > img { width: 100%; margin-top: -40px; }
+
+.content2_inner > article:nth-of-type(2) > a > div { float: left; width: 280px; height: 220px; color: #222; }
+.content2_inner > article:nth-of-type(2) > a > div > h3 { margin-top: 65px; margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(2) > a > div > h3 > img { height: 45px; }
+.content2_inner > article:nth-of-type(2) > a > div > ul > li-first-child { font-size: 16px; line-height: 24px; }
+
+/* hover 했을 때 */
+.content2_inner > article:nth-of-type(2) > div { position: absolute; left: -100%;
+display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #fff; 
+transition: left 400ms cubic-bezier(0.770, 0.0000, 0.175, 1.000) 0s; }
+.content2_inner > article:nth-of-type(2):hover > div { left: 0; top: 0; }
+
+/* div.detail */
+.content2_inner > article:nth-of-type(2) > div > div.detail { /* 부모인 div에 flex로 위치 지정했으므로 따로 지정할 필요 없음. */ } 
+.content2_inner > article:nth-of-type(2) > div > div.detail > h3 { margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(2) > div > div.detail > h3 > img { height: 35px; }
+
+.content2_inner > article:nth-of-type(2) > div > div.detail > ul > li { color: #555; font-size: 16px; line-height: 24px; }
+.content2_inner > article:nth-of-type(2) > div > div.detail > ul > li:first-child { color: #222; font-size: 16px; margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(2) > div > div.detail > ul > li:last-child { margin-top: 10px; padding: 0 15px; border: 1px solid #222; border-radius: 2px; } 
+.content2_inner > article:nth-of-type(2) > div > div.detail > ul > li:last-child > a { display: block; padding-right: 20px; color: #222; background: url(../img/ico_out_link04.png) no-repeat 100% 50%; } /* 레시피보기 이미지 삽입 */
+
+/* article 3번 */
+.content2_inner > article:nth-of-type(3) { position: absolute; left: 100px; top: 1274px; width: 220px; height: 353px; } /* inner 기준으로 위치 선정 */
+
+.content2_inner > article:nth-of-type(3) > a {  }
+.content2_inner > article:nth-of-type(3) > a > span { display: block; width: 220px; height: 220px; overflow: hidden; }
+.content2_inner > article:nth-of-type(3) > a > span > img { width: 100%; margin-top: 10px; }
+
+.content2_inner > article:nth-of-type(3) > a > div { width: 220px; height: 136px; color: #222; }
+.content2_inner > article:nth-of-type(3) > a > div > h3 { margin-top: 15px; margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(3) > a > div > h3 > img { height: 35px; }
+.content2_inner > article:nth-of-type(3) > a > div > ul > li:first-child { font-size: 16px; line-height: 24px; } 
+.content2_inner > article:nth-of-type(3) > a > div > ul > li:last-child { font-size: 12px; line-height: 24px; } 
+
+/* hover 했을 때 */
+.content2_inner > article:nth-of-type(3) > div { position: absolute; top: 100%; 
+display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #fff; transition: top 400ms cubic-bezier(0.770, 0.0000, 0.175, 1.000) 0s; }
+/* 각각의 article 위치를 기준으로 hover 했을 때 위치를 잡아줌. */
+.content2_inner > article:nth-of-type(3):hover > div { top: 0; }
+
+/* div.detail */
+.content2_inner > article:nth-of-type(3) > div > div.detail { /* 부모인 div에 flex로 위치 지정했으므로 따로 지정할 필요 없음. */ } 
+.content2_inner > article:nth-of-type(3) > div > div.detail > h3 { margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(3) > div > div.detail > h3 > img { height: 35px; }
+
+.content2_inner > article:nth-of-type(3) > div > div.detail > ul > li:first-child { font-size: 16px; margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(3) > div > div.detail > ul > li { color: #555; font-size: 16px; line-height: 28px; }
+.content2_inner > article:nth-of-type(3) > div > div.detail > ul > li:nth-child(2) { font-size: 12px; line-height: 24px }
+.content2_inner > article:nth-of-type(3) > div > div.detail > ul > li:last-child { margin-top: 10px; padding: 0 15px; border: 1px solid #222; border-radius: 2px; } 
+.content2_inner > article:nth-of-type(3) > div > div.detail > ul > li:last-child > a { display: block; padding-right: 20px; color: #222; background: url(../img/ico_out_link04.png) no-repeat 100% 50%; } /* 구매하기 이미지 삽입 */
+
+
+/* article 4번 */
+.content2_inner > article:nth-of-type(4) { position: absolute; right: 70px;  top: 1060px; width: 300px; height: 574px;  } /* inner 기준으로 위치 선정 */
+
+.content2_inner > article:nth-of-type(4) > a {  }
+.content2_inner > article:nth-of-type(4) > a > span { display: block; width: 300px; height: 429px; overflow: hidden; }
+.content2_inner > article:nth-of-type(4) > a > span > img { width: 100%; }
+
+.content2_inner > article:nth-of-type(4) > a > div { width: 300px; height: 145px; color: #222; }
+.content2_inner > article:nth-of-type(4) > a > div > h3 { margin-top: 20px; margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(4) > a > div > h3 > img { height: 35px; }
+
+.content2_inner > article:nth-of-type(4) > a > div > ul > li:first-child { font-size: 16px; line-height: 30px; color: #333; }
+.content2_inner > article:nth-of-type(4) > a > div > ul > li:first-child > span { width: 17px; height: 17px; margin: 4px 4px 0 0; border: 1px solid #30608e;
+border-radius: 50%; color:#30608e; font-size: 10px; font-family: arial; text-align: center; line-height: 17px; vertical-align: center; } /* 12 동그라미 */
+.content2_inner > article:nth-of-type(4) > a > div > ul > li:nth-child(2) { margin-top: 15px; color: #8d8d8d; }
+.content2_inner > article:nth-of-type(4) > a > div > ul > li:nth-child(2) > span:last-child { display: inline-block; width: 108px; height: 16px; background: url(../img/ico_movie.png) no-repeat 0% 100%; }
+
+/* hover 했을 때 */
+.content2_inner > article:nth-of-type(4) > div { position: absolute; top: 100%; 
+display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #fff; transition: top 400ms cubic-bezier(0.770, 0.0000, 0.175, 1.000) 0s; }
+/* 각각의 article 위치를 기준으로 hover 했을 때 위치를 잡아줌. */
+.content2_inner > article:nth-of-type(4):hover > div { top: 0; }
+
+/* div.detail */
+.content2_inner > article:nth-of-type(4) > div > div.detail { /* 부모인 div에 flex로 위치 지정했으므로 따로 지정할 필요 없음. */ } 
+.content2_inner > article:nth-of-type(4) > div > div.detail > h3 { margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(4) > div > div.detail > h3 > img { height: 35px; }
+
+.content2_inner > article:nth-of-type(4) > div > div.detail > ul > li:first-child { color: #333; font-size: 16px; margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(4) > div > div.detail > ul > li:first-child > span { width: 20px; height: 20px; margin: 4px 4px 0 0; border: 1px solid #30608e;
+border-radius: 50%; color:#30608e; font-size: 10px; font-family: arial; text-align: center; line-height: 20px; vertical-align: center; }
+
+.content2_inner > article:nth-of-type(4) > div > div.detail > ul > li { color: #555; font-size: 16px; line-height: 28px; }
+.content2_inner > article:nth-of-type(4) > div > div.detail > ul > li:last-child { margin-top: 10px; padding: 0 15px; border: 1px solid #222; border-radius: 2px; } 
+.content2_inner > article:nth-of-type(4) > div > div.detail > ul > li:last-child > a { display: block; padding-right: 20px; color: #222; background: url(../img/ico_out_link04.png) no-repeat 100% 50%; } /* 레시피보기 이미지 삽입 */
+
+.content2_inner > article:nth-of-type(4) > div > div.detail > ul > li:nth-child(5) { margin-top: 15px; color: #8d8d8d; }
+.content2_inner > article:nth-of-type(4) > div > div.detail > ul > li:nth-child(5) > span:last-child { display: inline-block; width: 108px; height: 16px; background: url(../img/ico_movie.png) no-repeat 0% 100%; } 
+
+
+/* article 5번 */
+.content2_inner > article:nth-of-type(5) { position: absolute; left: 100px; top: 1765px; width: 300px; height: 300px; } /* inner 기준으로 위치 선정 */
+
+.content2_inner > article:nth-of-type(5) > a {  }
+.content2_inner > article:nth-of-type(5) > a > span { display: block; width: 300px; height: 300px; overflow: hidden; }
+.content2_inner > article:nth-of-type(5) > a > span > img { width: 100%; }
+
+.content2_inner > article:nth-of-type(5) > a > div { position: absolute; left: 10px; top: 260px; color: #555; }
+.content2_inner > article:nth-of-type(5) > a > div > h3 {  }
+.content2_inner > article:nth-of-type(5) > a > div > h3 > img { height: 40px; }
+
+/* hover 했을 때 */
+.content2_inner > article:nth-of-type(5) > div { position: absolute; top: 100%; 
+display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #fff; transition: top 400ms cubic-bezier(0.770, 0.0000, 0.175, 1.000) 0s; }
+/* 각각의 article 위치를 기준으로 hover 했을 때 위치를 잡아줌. */
+.content2_inner > article:nth-of-type(5):hover > div { top: 0; }
+
+/* div.detail */
+.content2_inner > article:nth-of-type(5) > div > div.detail { /* 부모인 div에 flex로 위치 지정했으므로 따로 지정할 필요 없음. */ } 
+.content2_inner > article:nth-of-type(5) > div > div.detail > h3 { margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(5) > div > div.detail > h3 > img { height: 35px; }
+
+.content2_inner > article:nth-of-type(5) > div > div.detail > ul > li { color: #555; font-size: 16px; line-height: 24px; }
+.content2_inner > article:nth-of-type(5) > div > div.detail > ul > li:first-child { color: #222; font-size: 16px; margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(5) > div > div.detail > ul > li:last-child { margin-top: 10px; padding: 0 15px; border: 1px solid #222; border-radius: 2px; } 
+.content2_inner > article:nth-of-type(5) > div > div.detail > ul > li:last-child > a { display: block; padding-right: 20px; color: #222; background: url(../img/ico_out_link04.png) no-repeat 100% 50%; } /* 레시피보기 이미지 삽입 */
+
+
+/* article 6번 */
+.content2_inner > article:nth-of-type(6) { position: absolute; right: 90px; top: 1687px; width: 220px; height: 378px; } /* inner 기준으로 위치 선정 */
+
+.content2_inner > article:nth-of-type(6) > a {  }
+.content2_inner > article:nth-of-type(6) > a > span { display: block; width: 220px; height: 220px; overflow: hidden; }
+.content2_inner > article:nth-of-type(6) > a > span > img { width: 100%; }
+
+.content2_inner > article:nth-of-type(6) > a > div { width: 220px; height: 158px; color: #555; }
+.content2_inner > article:nth-of-type(6) > a > div > h3 { margin-top: 15px; margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(6) > a > div > h3 > img { height: 35px; }
+
+.content2_inner > article:nth-of-type(6) > a > div > ul > li { line-height: 22px; }
+.content2_inner > article:nth-of-type(6) > a > div > ul > li:last-child { margin-top: 10px; font-size: 14px; }
+.content2_inner > article:nth-of-type(6) > a > div > ul > li:last-child > span { color: #777; font-size: 12px; text-decoration-line: line-through; }
+
+/* hover 했을 때 */
+.content2_inner > article:nth-of-type(6) > div { position: absolute; top: 100%; 
+display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #fff; transition: top 400ms cubic-bezier(0.770, 0.0000, 0.175, 1.000) 0s; }
+/* 각각의 article 위치를 기준으로 hover 했을 때 위치를 잡아줌. */
+.content2_inner > article:nth-of-type(6):hover > div { top: 0; }
+
+
+/* div.detail */
+.content2_inner > article:nth-of-type(6) > div > div.detail { /* 부모인 div에 flex로 위치 지정했으므로 따로 지정할 필요 없음. */ } 
+.content2_inner > article:nth-of-type(6) > div > div.detail > h3 { margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(6) > div > div.detail > h3 > img { height: 35px; }
+
+.content2_inner > article:nth-of-type(6) > div > div.detail > ul > li:first-child { color: #222; font-size: 16px; margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(6) > div > div.detail > ul > li { color: #555; font-size: 16px; line-height: 26px; }
+
+.content2_inner > article:nth-of-type(6) > div > div.detail > ul > li:nth-child(3) { margin-top: 10px; font-size: 14px; }
+.content2_inner > article:nth-of-type(6) > div > div.detail > ul > li:nth-child(3) > span { color: #777; font-size: 12px; text-decoration-line: line-through; }
+
+
+.content2_inner > article:nth-of-type(6) > div > div.detail > ul > li:last-child { margin-top: 10px; padding: 0 15px; border: 1px solid #222; border-radius: 2px; } 
+.content2_inner > article:nth-of-type(6) > div > div.detail > ul > li:last-child > a { display: block; padding-right: 20px; color: #222; background: url(../img/ico_out_link04.png) no-repeat 100% 50%; } /* 레시피보기 이미지 삽입 */
+
+
+/* article 7번 */
+.content2_inner > article:nth-of-type(7) { position: absolute; left: 140px; top: 2582px; width: 500px; height: 314px; } /* inner 기준으로 위치 선정 */
+
+.content2_inner > article:nth-of-type(7) > a {  }
+.content2_inner > article:nth-of-type(7) > a > span { display: block; float: right; width: 220px; height: 314px; overflow: hidden; }
+.content2_inner > article:nth-of-type(7) > a > span > img { width: 100%; }
+
+.content2_inner > article:nth-of-type(7) > a > div { float: left; width: 280px; height: 314px; }
+.content2_inner > article:nth-of-type(7) > a > div > h3 { margin-top: 70px; margin-bottom: 20px; }
+.content2_inner > article:nth-of-type(7) > a > div > h3 > img { height: 45px; }
+
+.content2_inner > article:nth-of-type(7) > a > div > ul > li:first-child { font-size: 16px; color: #555; margin-bottom: 30px; }
+.content2_inner > article:nth-of-type(7) > a > div > ul > li:first-child > span { width: 20px; height: 20px; margin: 4px 4px 0 0; border: 1px solid #369a0a; 
+border-radius: 50%; color: #369a0a; font-size: 10px; font-family: arial; text-align: center; line-height: 20px; vertical-align: center; } /* all 동그라미 */
+.content2_inner > article:nth-of-type(7) > a > div > ul > li:last-child { color: #8d8d8d; }
+.content2_inner > article:nth-of-type(7) > a > div > ul > li:last-child > span:last-child { display: inline-block; width: 108px; height: 16px; background: url(../img/ico_movie.png) no-repeat 0% 67%; }
+
+
+/* hover 했을 때 */
+.content2_inner > article:nth-of-type(7) > div { position: absolute; left: -100%;
+display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #fff; transition: left 400ms cubic-bezier(0.770, 0.0000, 0.175, 1.000) 0s; }
+.content2_inner > article:nth-of-type(7):hover > div { left: 0; }
+
+
+/* div.detail */
+.content2_inner > article:nth-of-type(7) > div > div.detail { /* 부모인 div에 flex로 위치 지정했으므로 따로 지정할 필요 없음. */ } 
+.content2_inner > article:nth-of-type(7) > div > div.detail > h3 { margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(7) > div > div.detail > h3 > img { height: 35px; }
+
+.content2_inner > article:nth-of-type(7) > div > div.detail > ul > li:first-child { color: #333; font-size: 16px; margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(7) > div > div.detail > ul > li:first-child > span { width: 20px; height: 20px; margin: 4px 4px 0 0; border: 1px solid #369a0a; 
+border-radius: 50%; color: #369a0a; font-size: 10px; font-family: arial; text-align: center; line-height: 20px; vertical-align: center; }
+
+.content2_inner > article:nth-of-type(7) > div > div.detail > ul > li { color: #555; font-size: 16px; line-height: 28px; }
+.content2_inner > article:nth-of-type(7) > div > div.detail > ul > li:last-child { margin-top: 10px; padding: 0 15px; border: 1px solid #222; border-radius: 2px; } 
+.content2_inner > article:nth-of-type(7) > div > div.detail > ul > li:last-child > a { display: block; padding-right: 20px; color: #222; background: url(../img/ico_out_link04.png) no-repeat 100% 50%; } /* 레시피보기 이미지 삽입 */
+
+.content2_inner > article:nth-of-type(7) > div > div.detail > ul > li:nth-child(5) { margin-top: 15px; color: #8d8d8d; }
+.content2_inner > article:nth-of-type(7) > div > div.detail > ul > li:nth-child(5) > span:last-child { display: inline-block; width: 108px; height: 16px; background: url(../img/ico_movie.png) no-repeat 0% 67%; } 
+
+/* article 8번 */
+.content2_inner > article:nth-of-type(8) { position: absolute; left: 190px; top: 2124px; width: 400px; height: 400px; }  /* inner 기준으로 위치 선정 */
+
+.content2_inner > article:nth-of-type(8) > a { }
+.content2_inner > article:nth-of-type(8) > a > span { display: block; width: 400px; height: 400px; overflow: hidden; }
+.content2_inner > article:nth-of-type(8) > a > span > img { width: 100%; }
+
+.content2_inner > article:nth-of-type(8) > a > div { position: absolute; left: 0; top: 365px; width: 120px; height: 35px; background-color: #fff; }
+.content2_inner > article:nth-of-type(8) > a > div > h3 {  }
+.content2_inner > article:nth-of-type(8) > a > div > h3 > img { height: 35px; }
+
+/* hover 했을 때 */
+.content2_inner > article:nth-of-type(8) > div { position: absolute; top: 100%; 
+display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #fff; transition: top 400ms cubic-bezier(0.770, 0.0000, 0.175, 1.000) 0s; }
+/* 각각의 article 위치를 기준으로 hover 했을 때 위치를 잡아줌. */
+.content2_inner > article:nth-of-type(8):hover > div { top: 0; }
+
+
+/* div.detail */
+.content2_inner > article:nth-of-type(8) > div > div.detail { /* 부모인 div에 flex로 위치 지정했으므로 따로 지정할 필요 없음. */ } 
+.content2_inner > article:nth-of-type(8) > div > div.detail > h3 { margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(8) > div > div.detail > h3 > img { height: 35px; }
+
+.content2_inner > article:nth-of-type(8) > div > div.detail > ul > li:first-child { color: #222; font-size: 16px; margin-bottom: 10px; }
+.content2_inner > article:nth-of-type(8) > div > div.detail > ul > li { color: #555; font-size: 16px; line-height: 26px; }
+
+.content2_inner > article:nth-of-type(8) > div > div.detail > ul > li:nth-child(2) { margin-top: 10px; font-size: 14px; }
+.content2_inner > article:nth-of-type(8) > div > div.detail > ul > li:nth-child(2) > span { color: #777; font-size: 12px; text-decoration-line: line-through; }
+
+.content2_inner > article:nth-of-type(8) > div > div.detail > ul > li:last-child { margin-top: 10px; padding: 0 15px; border: 1px solid #222; border-radius: 2px; } 
+.content2_inner > article:nth-of-type(8) > div > div.detail > ul > li:last-child > a { display: block; padding-right: 20px; color: #222; background: url(../img/ico_out_link04.png) no-repeat 100% 50%; } /* 레시피보기 이미지 삽입 */
+
+
+/* circle_wrap */
+.circle_wrap > span { position: absolute; }
+
+/* content2기준으로 */
+.combine_Left { top: -900px; left: 55px; width: 210px; height: 210px; background: url(../img/bg_circle_doughnut01.png) no-repeat 0 0; }
+.doughnut_Left_S { top: 400px; left: 65px; width: 162px; height: 162px; background: url(../img/bg_circle02.png) no-repeat 0 0; }
+
+.doughnut_Center_M { top: 1500px; left: 700px; width: 206px; height: 206px; background: url(../img/bg_circle04.png) no-repeat 0 0; }
+.doughnut_Center_S { top: 400px; left: 850px; width: 119px; height: 119px; background: url(../img/bg_circle03.png) no-repeat 0 0; }
+
+.doughnut_Right_S { top: 300px; right: 1px; width: 206px; height: 206px; background: url(../img/bg_circle01.png) no-repeat 0 0; }
+.doughnut_Right_M { top: 700px; right: 10px; width: 210px; height: 210px; background: url(../img/bg_circle05.png) no-repeat 0 0; }
+.combine_Right { top: -700px; right: 10px; width: 210px; height: 210px; background: url(../img/bg_circle_doughnut02.png) no-repeat 0 0; }
+
+/* content3 */
+.content3_inner > h2 { font-size: 34px; line-height: 60px; font-family: cj_onlyone_medium; text-align: center; }
+
+.content3_inner > ul { display: flex; justify-content: center; padding: 30px 0; }
+/* 이 부분은 li의 길이와 border 위치가 비슷하기 때문에 after를 굳이 쓰지 않고 border 사용 */
+.content3_inner > ul > li { margin-left: 12px; padding-left: 14px; border-left: 1px solid #ddd; }
+.content3_inner > ul > li:first-child { border-left: none; margin-left: 0; padding-left: 0; }
+.content3_inner > ul > li > a { color: #888; font-size: 16px; line-height: 16px; }
+/* hover 했을 떄 / .on이 붙었을 때*/
+.content3_inner > ul > li > a:hover, .content3_inner > ul > li > a.on { color: #222; text-decoration: underline; text-underline-offset: 5px; }
+
+/* content3 > div > ul의 content - float 사용 */
+.content3_inner > div { padding-left: 3%; min-width: 694px }
+.content3_inner > div > ul { width: 100%; }
+.content3_inner > div > ul:after { display: block; content: ""; clear: both;  }
+.content3_inner > div > ul > li { float: left; text-align: center; position: relative; }
+
+/* hover 했을 때 border가 들어갈 경우, 박스크기가 늘어나기 때문에 처음부터 border를 투명으로 넣어줌. */
+.content3_inner > div > ul > li > a { display: block; width: 164px; height: 80px; border: 1px solid transparent; box-sizing: border-box; line-height: 80px; }
+/* hover 했을 때 border는 자바스크립트에서 해줄거임 / hover 했을 때 자연스럽게 애니메이션을 넣고 싶을 때 hover 보다는 자바스크립트 mouseover가 더 자연스러움 */
+.content3_inner > div > ul > li.on > a { border: 1px solid #f4790b; }
+.content3_inner > div > ul > li > a > img { height: 41px; } /* 로고 이미지 사이즈 */
+
+.content3_inner > div > ul > li > span { opacity: 0; position: absolute; left: 0; top: 0; width: 164px; height: 80px; background: #eee; font-size: 16px; 
+padding: 25px 10px 0; line-height: 1.5; box-sizing: border-box; color: #555; transition: all 0.1s linear 0s; } /* 각각의 li를 기준으로 위치 선정 */
+/* hover 했을 때 나타나는 삼각형 / a 태그 보다는 span태그에 넣는 것이 애매하지 않음. */
+.content3_inner > div > ul > li.on > span { z-index: 1; opacity: 1; left: 164px; }
+.content3_inner > div > ul > li > span::before { content: ""; display: block; width: 10px; height: 16px; background: url(../img/ico_alliance_arrow01.png) no-repeat 0 0;
+position: absolute; left: -1px; top: 50%; transform: translateY(-50%); } /* span을 기준으로 위치 선정 */
+
+.content3_inner > div > ul > li > span > strong { font-weight: bold; } /* reset에서 제거한 strong 추가 */
+
+/* event 붙은 것 */
+li.event::before { content: "event"; display: block; position: absolute; right: 8px; top: 8px; width: 38px; height: 16px; background-color: #f4790b; 
+border-radius: 3px; color: #fff; font-size: 12px; text-align: center; line-height: 16px; }
+
+/* 홀수 : odd 짝수 : even */
+/* 4의 배수는 왼쪽으로 나오세요 */
+.content3_inner > div > ul > li:nth-child(4n) {  }
+.content3_inner > div > ul > li:nth-child(4n).on > span { z-index: 1; opacity: 1; left: -164px; }
+.content3_inner > div > ul > li:nth-child(4n) > span::before { content: ""; display: block; width: 10px; height: 16px; background: url(../img/ico_alliance_arrow.png) no-repeat 0 0;
+position: absolute; left: 155px; top: 50%; transform: translateY(-50%); } /* span을 기준으로 위치 선정 */
+
+
+/* footer 시작 */
+.footer_inner a { color: #9f9f9f; }
+
+.footer_inner > ul { width: 500px; margin: 0 auto; }
+.footer_inner > ul > li { display: inline-block; padding: 9px 9px; }
+.footer_inner > ul > li:nth-child(2) a { font-size: 15px; color: #fff; }
+.footer_inner > ul > li:nth-child(2) a:hover { text-decoration: underline; text-underline-offset: 5px; }
+
+.footer_inner > dl { margin: 20px 0 30px; }
+.footer_inner > dl > dd { display: inline-block; margin-left: 2px; width: 90px; height: 27px; background: #272727; border: 1px solid #2c2c2c; border-radius: 2px; line-height: 27px; }
+.footer_inner > dl > dd > a { color: #fff; }
+
+.footer_inner > dl > dd.family_site { position: relative; width: 160px; border: 1px solid #6d6d6d; background: #222; text-align: left; }
+.footer_inner > dl > dd.family_site > a { display: block; padding: 0 14px; color: #777; font-size: 12px; }
+.footer_inner > dl > dd.family_site.on > a { background-position-y: -27px; }
+
+
+.footer_inner > dl > dd.family_site > ul { display: none; /* 클래스 on이 붙었을 때 display: block; */
+position: absolute; bottom: 27px; left: -1px; right: -1px; background: #222; border: 1px solid #6d6d6d; 
+border-radius: 2px; padding: 7px 14px; color: #a3a3a3; font-size: 12px; } /* ddi.family_site를 기준으로 위치 선정 */
+.footer_inner > dl > dd.family_site.on > ul { display: block; }
+.footer_inner > dl > dd > ul a { color: #777; }
+.footer_inner > dl > dd > ul > li > ul { text-indent: 10px; }
+
+.footer_inner > address { width: 650px; margin: 0 auto; font-size: 12px; line-height: 24px; letter-spacing: 0; }
+.footer_inner > address > span { padding: 0 7px; }
+
+.footer_inner > p.copy { font-size: 12px; padding-top: 5px; letter-spacing: 0; }
+
+/* top버튼 */
+div.top { display: none; position: fixed; bottom: 30px; right: 40px; width: 58px; height: 58px; z-index: 100; } /* 탑버튼 고정 */
+div.top.on { display: block; } /* 탑버튼 보이기 시작 */
+div.top.ab { position: absolute; top: -100px; right: 40px; bottom: auto; } /* 탑버튼 보이기 시작하는 지점 */
+
+} /* 모바일 화면 끝 */
+
